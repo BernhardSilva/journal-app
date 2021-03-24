@@ -11,17 +11,6 @@ import { AuthRouter } from './AuthRouter';
 export const AppRouter = () => {
   return (
     <>
-      {/* {
-                Router:
-                path=/auth      
-                No es exact
-                component={AuthRouter}
-                
-                MainRoute:
-                exact
-                path="/"
-                component{JournalScreen}
-            } */}
       <Router>
         <div>
           <Switch>
