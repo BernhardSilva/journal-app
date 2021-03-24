@@ -1,10 +1,12 @@
 .btn {
   background-color: transparent;
   border: none;
-  color: white !important;
+  color: white;
   cursor: pointer;
   font-size: 12px;
   padding: 7px 10px 7px 10px;
+
+  transition: color 0.3s ease;
 
   &:focus {
     outline: none;
@@ -25,6 +27,16 @@
 
 .btn-block {
   width: 100%;
+}
+
+.btn__notes {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  &:hover {
+    color: darken($color: $white, $amount: 15);
+  }
 }
 
 .google-btn {

@@ -1,0 +1,51 @@
+.notes__main-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.notes__appbar {
+  align-items: center;
+  background-color: $primary;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px 10px 20px;
+}
+
+.notes__content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+}
+
+.notes__title-input,
+.notes__textarea {
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+.notes__title-input {
+  color: $dark-grey;
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.notes__textarea {
+  //   border: solid 1px black;
+  color: $dark-grey;
+  font-size: 20px;
+  flex: 1 1 auto; //used to expand the maximun possible the text area
+  resize: none; //remove the resize text area icon
+  width: 100%;
+}
+
+.notes__image img {
+  border-radius: 5px;
+  box-shadow: 5px 5px $dark-grey;
+  height: 250px;
+}

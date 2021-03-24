@@ -18,7 +18,7 @@ export const Sidebar = () => {
 
           <span> Bernhard</span>
         </h3>
-        <div className="journal__sign-out" onClick={handleLogout}>
+        <div className="journal-sign-out" onClick={handleLogout}>
           <i className="fas fa-sign-out-alt fa-2x" />
         </div>
       </div>

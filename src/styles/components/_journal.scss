@@ -7,7 +7,7 @@
   color: white;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   padding-left: 10px;
   padding-right: 10px;
   width: 450px;
@@ -38,7 +38,7 @@
   }
 }
 
-.journal__sign-out {
+.journal-sign-out {
   cursor: pointer;
   transition: color 0.3s ease;
   margin-top: 12px;
@@ -48,15 +48,16 @@
 }
 
 .journal__entries {
-  margin-top: 30px;
   flex: 1 1 auto; //usa todo el espacio restante
-  overflow: scroll; //lo que sea que se pase se pasa a un scroll
+  margin-top: 30px;
+  overflow-y: scroll; //lo que sea que se pase se pasa a un scroll
 }
 
 .journal__entry {
   background-color: white;
   border-radius: 4px;
   color: $dark-grey;
+  cursor: pointer;
   display: flex;
   margin-bottom: 10px;
   overflow: hidden; //cualquier cosa que se pase (overflow) se oculta
@@ -65,4 +66,27 @@
 .journal__entry-picture {
   height: 75px;
   width: 75px;
+}
+
+.journal__entry-body {
+  padding: 10px;
+}
+.journal__entry-title {
+  font-size: 14px;
+  font-weight: bold;
+}
+.journal__entry-content {
+  font-size: 10px;
+}
+
+.journal__entry-date-box {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+}
+
+.journal__entry-date-box span {
+  font-size: 12px;
 }
