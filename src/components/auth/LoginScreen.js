@@ -20,8 +20,7 @@ export const LoginScreen = () => {
           name="password"
         />
         <button className="btn btn-primary btn-block" type="submit">
-          {' '}
-          Login{' '}
+          Login
         </button>
 
         <div className="auth__social-networks">
@@ -40,7 +39,9 @@ export const LoginScreen = () => {
             </p>
           </div>
         </div>
-        <Link to="/auth/register">Create new account</Link>
+        <Link to="/auth/register" className="link">
+          Create new account
+        </Link>
       </form>
     </>
   );
