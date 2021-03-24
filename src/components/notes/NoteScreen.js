@@ -15,7 +15,7 @@ export const NoteScreen = () => {
         />
 
         <textarea
-          placeholder="What happened today"
+          placeholder="Write here your event 📝"
           className="notes__textarea"
         ></textarea>
 

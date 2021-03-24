@@ -2,6 +2,14 @@ import React from 'react';
 import { JournalEntries } from './JournalEntries';
 
 export const Sidebar = () => {
+  const user = {
+    name: 'Bernhard',
+    email: 'mail@mail.com',
+    password: 'password',
+  };
+
+  const { name } = user;
+
   const handleLogout = () => {
     alert('logout');
   };
@@ -16,9 +24,9 @@ export const Sidebar = () => {
         <h3 className="mt-5">
           <i className="far fa-moon" />
 
-          <span> Bernhard</span>
+          <span> {name}</span>
         </h3>
-        <div className="journal-sign-out" onClick={handleLogout}>
+        <div className="journal-sign-out" title="Logout" onClick={handleLogout}>
           <i className="fas fa-sign-out-alt fa-2x" />
         </div>
       </div>

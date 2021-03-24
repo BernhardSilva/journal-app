@@ -1,15 +1,32 @@
 import React from 'react';
 
 export const NotesAppBar = () => {
+  const handleSaveNote = () => {
+    alert('Save note');
+  };
+
+  const handleUploadImage = () => {
+    alert('Upload image');
+  };
+
   return (
     <div className="notes__appbar">
       <span>19 de Junio 2021</span>
       <div className="btn__notes">
-        <div>
-          <button className="btn btn__notes">Picture</button>
+        <div
+          className="btn btn__notes"
+          title="Upload image"
+          onClick={handleUploadImage}
+        >
+          <i className="fas fa-upload fa-2x" />
         </div>
-        <div>
-          <button className="btn btn__notes">Save</button>
+
+        <div
+          className="btn btn__notes"
+          title="Save Note"
+          onClick={handleSaveNote}
+        >
+          <i className="fas fas fa-save fa-2x" />
         </div>
       </div>
     </div>
