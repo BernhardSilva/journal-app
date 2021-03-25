@@ -16,12 +16,11 @@ export const LoginScreen = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // console.log(email, password);
+    console.log(email, password);
     dispatch(startLoginEmailPassword(email, password));
   };
 
-  const handleGoogleLogin = (e) => {
-    e.preventDefault();
+  const handleGoogleLogin = () => {
     dispatch(startGoogleLogin());
   };
 
