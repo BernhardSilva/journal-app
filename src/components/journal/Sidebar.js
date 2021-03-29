@@ -1,24 +1,23 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../actions/auth';
+import { startNewNote } from '../../actions/notes';
 import { JournalEntries } from './JournalEntries';
 
 export const Sidebar = () => {
   const dispatch = useDispatch();
 
-  const user = {
-    name: 'Bernhard',
-    email: 'mail@mail.com',
-    password: 'password',
-  };
+  //useSelector para tomar los datos de auth: { name: abcd}
+  const state = useSelector((state) => state.auth);
 
-  const { name } = user;
+  const { name } = state;
 
   const handleLogout = () => {
     dispatch(startLogout());
   };
 
-  const handleNewEntry = () => {
+  const addNewEntry = () => {
+    dispatch(startNewNote());
     alert('new entry');
   };
 
@@ -35,7 +34,7 @@ export const Sidebar = () => {
         </div>
       </div>
 
-      <div className="journal__new-entry" onClick={handleNewEntry}>
+      <div className="journal__new-entry" onClick={addNewEntry}>
         <i className="far fa-calendar-plus fa-5x" />
         <p className="mt-5">New entry</p>
       </div>

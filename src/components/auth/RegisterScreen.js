@@ -31,7 +31,6 @@ export const RegisterScreen = () => {
     e.preventDefault();
 
     if (isFormValid()) {
-
       dispatch(startSignInWithEmailPasswordName(email, password, name));
     }
   };
@@ -39,7 +38,9 @@ export const RegisterScreen = () => {
   //Form validation
   const isFormValid = () => {
     if (name.trim().length <= 1) {
-      dispatch(setErrorAction('The name is required and must be longer than 1!'));
+      dispatch(
+        setErrorAction('The name is required and must be longer than 1!'),
+      );
       return false;
     } else if (validator.isInt(name)) {
       dispatch(setErrorAction('Name must be valid!'));
