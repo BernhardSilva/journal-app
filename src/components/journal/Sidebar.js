@@ -1,7 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { startLogout } from '../../actions/auth';
 import { JournalEntries } from './JournalEntries';
 
 export const Sidebar = () => {
+  const dispatch = useDispatch();
+
   const user = {
     name: 'Bernhard',
     email: 'mail@mail.com',
@@ -11,7 +15,7 @@ export const Sidebar = () => {
   const { name } = user;
 
   const handleLogout = () => {
-    alert('logout');
+    dispatch(startLogout());
   };
 
   const handleNewEntry = () => {
