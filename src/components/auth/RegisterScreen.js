@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useForm } from '../../hooks/useForm';
 import { setErrorAction, removeErrorAction } from '../../actions/ui';
+import { startSignInWithEmailPasswordName } from '../../actions/auth';
 
 export const RegisterScreen = () => {
   const dispatch = useDispatch();
@@ -30,8 +31,9 @@ export const RegisterScreen = () => {
     e.preventDefault();
 
     if (isFormValid()) {
-      console.log('Success');
-      console.log(name, email, password, password2);
+      console.log('isValidFormSuccess');
+      // console.log(name, email, password, password2);
+      dispatch(startSignInWithEmailPasswordName(email, password, name));
     }
   };
 
@@ -70,7 +72,7 @@ export const RegisterScreen = () => {
       <h3 className="auth__tittle">Sign Up</h3>
       <form onSubmit={handleSignUpForm}>
         <input
-          className="auth__input"
+          className="auth__input mt-5"
           type="text"
           placeholder="Name"
           name="name"

@@ -16,6 +16,7 @@
 .btn-primary {
   background-color: $primary;
   border-radius: 2px;
+  height: 42px;
 
   &:disabled {
     background-color: lighten($color: $primary, $amount: 1);
@@ -29,7 +30,7 @@
   width: 100%;
 }
 
-.btn__notes {
+.btn-notes {
   align-items: center;
   display: flex;
   justify-content: space-between;

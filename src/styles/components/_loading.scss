@@ -1,0 +1,24 @@
+.loading__main {
+  align-items: center;
+  background-color: $primary;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0px;
+  height: 100vh;
+  width: 100vw;
+}
+
+.loading__img {
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 200px;
+}
+
+.loading__title {
+  margin-bottom: 50px;
+  color: white;
+  max-width: 200px;
+}

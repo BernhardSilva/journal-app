@@ -12,9 +12,9 @@ export const NotesAppBar = () => {
   return (
     <div className="notes__appbar">
       <span>19 de Junio 2021</span>
-      <div className="btn__notes">
+      <div className="btn-notes">
         <div
-          className="btn btn__notes"
+          className="btn btn-notes"
           title="Upload image"
           onClick={handleUploadImage}
         >
@@ -22,7 +22,7 @@ export const NotesAppBar = () => {
         </div>
 
         <div
-          className="btn btn__notes"
+          className="btn btn-notes"
           title="Save Note"
           onClick={handleSaveNote}
         >

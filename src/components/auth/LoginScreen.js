@@ -1,27 +1,54 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import validator from 'validator';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm';
+import { setErrorAction, removeErrorAction } from '../../actions/ui';
 
 export const LoginScreen = () => {
   const dispatch = useDispatch();
 
+  const { msgError, loading } = useSelector((state) => state.ui);
+
   const [formValues, handleInputChange] = useForm({
     email: 'benja@gmail.com',
-    password: '12345',
+    password: '123456',
   });
 
   const { email, password } = formValues;
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(email, password);
-    dispatch(startLoginEmailPassword(email, password));
+    if (isFormValid()) {
+      console.log(email, password);
+      dispatch(startLoginEmailPassword(email, password));
+    }
   };
 
   const handleGoogleLogin = () => {
     dispatch(startGoogleLogin());
+  };
+
+  const isFormValid = () => {
+    if (!validator.isEmail(email)) {
+      dispatch(setErrorAction('Email must be valid!'));
+      return false;
+    } else if (password.length <= 5) {
+      dispatch(
+        setErrorAction('The Password needs to be longer than 6 characters!'),
+      );
+      return false;
+    }
+    dispatch(removeErrorAction());
+    return true;
+  };
+
+  //Remove Error
+  const removeError = () => {
+    dispatch(removeErrorAction());
+    return true;
   };
 
   return (
@@ -29,7 +56,7 @@ export const LoginScreen = () => {
       <h3 className="auth__tittle">Login</h3>
       <form onSubmit={handleLogin}>
         <input
-          className="auth__input"
+          className="auth__input mt-5"
           type="text"
           placeholder="Email"
           name="email"
@@ -45,7 +72,14 @@ export const LoginScreen = () => {
           value={password}
           onChange={handleInputChange}
         />
-        <button className="btn btn-primary btn-block" type="submit">
+
+        {msgError && <div className="auth__alert-error">{msgError}</div>}
+        <button
+          type="submit"
+          className="btn btn-primary btn-block"
+          disabled={loading}
+          onClick={removeError}
+        >
           Login
         </button>
 
@@ -65,7 +99,7 @@ export const LoginScreen = () => {
             </p>
           </div>
         </div>
-        <Link to="/auth/register" className="link">
+        <Link to="/auth/register" className="link" onClick={removeError}>
           Create new account
         </Link>
       </form>
