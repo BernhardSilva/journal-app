@@ -9,6 +9,8 @@ import { login } from '../../actions/auth';
 import { LoadingScreen } from '../auth/LoadingScreen';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
+import { loadNotes } from '../../helpers/loadNotes';
+import { setNotes } from '../../actions/notes';
 
 export const AppRouter = () => {
   const dispatch = useDispatch();
@@ -19,12 +21,14 @@ export const AppRouter = () => {
 
   useEffect(() => {
     //acá creo un observable de user, para ver la actividad de login de user.
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(async (user) => {
       // console.log(user);
       //si user existe? entonces busco por uid
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
         setIsLoggedIn(true);
+        const notes = await loadNotes(user.uid);
+        dispatch(setNotes(notes));
       } else {
         setIsLoggedIn(false);
       }
