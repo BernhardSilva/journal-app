@@ -1,15 +1,25 @@
 import React from 'react';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { activeNote } from '../../actions/notes';
 
 export const JournalEntry = ({ id, date, title, body, url }) => {
   const noteDate = moment(date);
+  const dispatch = useDispatch();
 
-  const handleJournalEntry = () => {
-    alert('Journal entry');
+  const handleEntryClick = () => {
+    dispatch(
+      activeNote(id, {
+        date,
+        title,
+        body,
+        url,
+      }),
+    );
   };
 
   return (
-    <div className="journal__entry" onClick={handleJournalEntry}>
+    <div className="journal__entry" onClick={handleEntryClick}>
       {url && ( //si el url existe se muestra, de lo contrario, no.
         <div
           className="journal__entry-picture"
