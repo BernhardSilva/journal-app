@@ -5,7 +5,7 @@ import { types } from '../types/types';
         notes: [],
         active: null,
         active: {
-            id: 'ÑALKSJDLKASJDÑAKSJD'
+            id: 'KJDJOAISHJDOSAIDFASS'
             tittle: '',
             body: '',
             imageUrl: '',
