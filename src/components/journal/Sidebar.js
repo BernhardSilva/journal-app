@@ -18,7 +18,6 @@ export const Sidebar = () => {
 
   const addNewEntry = () => {
     dispatch(startNewNote());
-    alert('new entry');
   };
 
   return (

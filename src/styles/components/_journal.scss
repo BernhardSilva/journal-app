@@ -59,6 +59,7 @@
   color: $dark-grey;
   cursor: pointer;
   display: flex;
+  justify-content: space-between;
   margin-bottom: 10px;
   overflow: hidden; //cualquier cosa que se pase (overflow) se oculta
 }
