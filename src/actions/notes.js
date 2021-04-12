@@ -1,9 +1,14 @@
-import { toast, uploaderImg, closeUploaderImg } from '../helpers/messages';
+import {
+  toast,
+  toastError,
+  uploaderImg,
+  closeUploaderImg,
+  messageButton,
+} from '../helpers/messages';
 import { db } from '../firebase/firebase-config';
 import { loadNotes } from '../helpers/loadNotes';
 import { types } from '../types/types';
 import { fileUpload } from '../helpers/fileUpload';
-// import Swal from 'sweetalert2';
 
 export const startNewNote = () => {
   return async (dispatch, getState) => {
@@ -17,18 +22,20 @@ export const startNewNote = () => {
 
     try {
       const doc = await db.collection(`${uid}/journal/notes`).add(newNote);
+
       dispatch(activeNote(doc.id, newNote));
+      dispatch(addNewNote(doc.id, newNote));
+
       toast.fire({
         position: 'top-start',
         icon: 'success',
-        title: 'New entry added',
+        title: 'Entry added',
       });
     } catch (error) {
       console.log(error);
-      toast.fire({
+      toastError.fire({
         position: 'top-start',
-        icon: 'error',
-        title: `"Add new entry" failed, error communication with the database, check your internet connection and try again`,
+        title: `"New entry" failed, communication error with the database, please check your internet connection and try again`,
       });
     }
   };
@@ -42,10 +49,28 @@ export const activeNote = (id, note) => ({
   },
 });
 
+export const addNewNote = (id, note) => ({
+  type: types.notesAddNew,
+  payload: {
+    id,
+    ...note,
+  },
+});
+
 export const startLoadingNotes = (uid) => {
   return async (dispatch) => {
-    const notes = await loadNotes(uid);
-    dispatch(setNotes(notes));
+    try {
+      const notes = await loadNotes(uid);
+      dispatch(setNotes(notes));
+    } catch (error) {
+      console.log(error);
+      messageButton.fire({
+        position: 'center',
+        icon: 'error',
+        title:
+          '"Load Notes" failed, communication error with the database, please check your internet connection and try again',
+      });
+    }
   };
 };
 
@@ -75,10 +100,9 @@ export const startSaveNote = (note) => {
       });
     } catch (error) {
       console.log(error);
-      toast.fire({
+      toastError.fire({
         position: 'top-end',
-        icon: 'error',
-        title: `"${note.title}" save failed, error communication with the database, check your internet connection and try again`,
+        title: `"${note.title}" save failed, communication error with the database, please check your internet connection and try again`,
       });
     }
   };
@@ -110,3 +134,34 @@ export const startUploadingImage = (file) => {
     closeUploaderImg.fire();
   };
 };
+
+export const startDeleteNote = (id) => {
+  return async (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    try {
+      await db.doc(`${uid}/journal/notes/${id}`).delete();
+      dispatch(deleteNote(id));
+      toast.fire({
+        position: 'bottom-end',
+        icon: 'success',
+        title: 'Note deleted',
+      });
+    } catch (error) {
+      console.log(error);
+      toastError.fire({
+        position: 'bottom-end',
+        title:
+          '"Delete note" failed, error communication with the database, please check your internet connection and try again',
+      });
+    }
+  };
+};
+
+export const deleteNote = (id) => ({
+  type: types.notesDelete,
+  payload: id,
+});
+
+export const noteLogout = () => ({
+  type: types.notesLogoutCleaning,
+});

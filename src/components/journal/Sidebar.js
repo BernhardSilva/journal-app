@@ -24,7 +24,7 @@ export const Sidebar = () => {
     <aside className="journal__sidebar">
       <div className="journal__side-navbar">
         <h3 className="mt-5">
-          <i className="far fa-moon" />
+          <i className="fas fa-user-circle" id="user-img" />
 
           <span> {name}</span>
         </h3>

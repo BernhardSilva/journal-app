@@ -1,13 +1,25 @@
 import React from 'react';
+import moment from 'moment';
+import { toast } from '../../helpers/messages';
 import { useDispatch, useSelector } from 'react-redux';
 import { startSaveNote, startUploadingImage } from '../../actions/notes';
 
 export const NotesAppBar = () => {
   const dispatch = useDispatch();
-  const { active } = useSelector((state) => state.notes);
+  const { active: note } = useSelector((state) => state.notes);
+
+  const date = moment(note.date);
 
   const handleSaveNote = () => {
-    dispatch(startSaveNote(active));
+    if (!note.title) {
+      toast.fire({
+        position: 'top',
+        icon: 'info',
+        title: 'Please enter a title',
+      });
+    } else {
+      dispatch(startSaveNote(note));
+    }
   };
 
   const handleUploadImage = () => {
@@ -17,13 +29,23 @@ export const NotesAppBar = () => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      dispatch(startUploadingImage(file));
+      if (!file.name.match(/\.(jpg|jpeg|png|gif)$/)) {
+        toast.fire({
+          position: 'top',
+          icon: 'warning',
+          title: 'Invalid image, please select a valid image!',
+        });
+        return false;
+      } else {
+        dispatch(startUploadingImage(file));
+        return true;
+      }
     }
   };
 
   return (
     <div className="notes__appbar">
-      <span>19 de Junio 2021</span>
+      <span>{date.format('dddd, MMMM Do YYYY, h:mm a')}</span>
       <input
         id="fileSelector"
         type="file"

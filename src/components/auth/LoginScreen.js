@@ -13,8 +13,8 @@ export const LoginScreen = () => {
   const { msgError, loading } = useSelector((state) => state.ui);
 
   const [formValues, handleInputChange] = useForm({
-    email: 'benja@gmail.com',
-    password: '123456',
+    email: '',
+    password: '',
   });
 
   const { email, password } = formValues;
@@ -22,7 +22,7 @@ export const LoginScreen = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (isFormValid()) {
-      console.log(email, password);
+      // console.log(email, password);
       dispatch(startLoginEmailPassword(email, password));
     }
   };

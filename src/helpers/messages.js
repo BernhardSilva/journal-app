@@ -5,10 +5,28 @@ export const toast = Swal.mixin({
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,
+});
+
+export const toastError = Swal.mixin({
+  toast: true,
+  showConfirmButton: false,
+  icon: 'error',
+  timer: 5000,
+  timerProgressBar: true,
   didOpen: (toast) => {
     toast.addEventListener('mouseenter', Swal.stopTimer);
     toast.addEventListener('mouseleave', Swal.resumeTimer);
   },
+});
+
+export const message = Swal.mixin({
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+});
+
+export const messageButton = Swal.mixin({
+  showConfirmButton: true,
 });
 
 export const closeUploaderImg = Swal.mixin({

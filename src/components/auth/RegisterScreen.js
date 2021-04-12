@@ -14,14 +14,14 @@ export const RegisterScreen = () => {
   const { msgError } = useSelector((state) => state.ui); // <- Acá extraigo de state->ui->{el mensaje de error del storage}
 
   const [formValues, handleInputChange] = useForm({
-    name: 'Benja',
-    email: 'benja@gmail.com',
-    password: '123456',
-    password2: '123456',
     // name: '',
     // email: '',
     // password: '',
     // password2: '',
+    name: 'Benja',
+    email: 'benja@gmail.com',
+    password: '123456',
+    password2: '123456',
   });
 
   const { name, email, password, password2 } = formValues;
