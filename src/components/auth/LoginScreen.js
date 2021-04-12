@@ -52,7 +52,7 @@ export const LoginScreen = () => {
   };
 
   return (
-    <>
+    <div className="animate__animated animate__fadeIn animate__fast">
       <h3 className="auth__tittle">Login</h3>
       <form onSubmit={handleLogin}>
         <input
@@ -69,6 +69,7 @@ export const LoginScreen = () => {
           type="password"
           placeholder="Password"
           name="password"
+          autoComplete="on"
           value={password}
           onChange={handleInputChange}
         />
@@ -103,6 +104,6 @@ export const LoginScreen = () => {
           Create new account
         </Link>
       </form>
-    </>
+    </div>
   );
 };

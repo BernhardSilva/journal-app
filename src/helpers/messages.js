@@ -31,7 +31,7 @@ export const messageButton = Swal.mixin({
 
 export const closeUploaderImg = Swal.mixin({
   showConfirmButton: false,
-  onBeforeOpen: () => {
+  willOpen: () => {
     Swal.close();
   },
 });
@@ -42,7 +42,7 @@ export const uploaderImg = Swal.mixin({
   text: 'Please wait',
   showConfirmButton: false,
   allowOutsideClick: false,
-  onBeforeOpen: () => {
+  willOpen: () => {
     Swal.showLoading();
   },
 });

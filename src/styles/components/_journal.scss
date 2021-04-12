@@ -77,7 +77,7 @@
 .journal__entry-body {
   padding: 10px;
   max-width: 155px;
-  max-height: 60px;
+  max-height: 55px;
 }
 .journal__entry-title {
   font-size: 14px;
@@ -85,6 +85,7 @@
 }
 .journal__entry-content {
   font-size: 10px;
+  max-height: 50px;
 }
 
 .journal__entry-date-box {

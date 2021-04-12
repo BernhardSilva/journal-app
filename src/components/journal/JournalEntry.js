@@ -19,7 +19,10 @@ export const JournalEntry = ({ id, date, title, body, url }) => {
   };
 
   return (
-    <div className="journal__entry" onClick={handleEntryClick}>
+    <div
+      className="journal__entry animate__animated animate__backInLeft animate__fast"
+      onClick={handleEntryClick}
+    >
       {url && ( //si el url existe se muestra, de lo contrario, no.
         <div
           className="journal__entry-picture"

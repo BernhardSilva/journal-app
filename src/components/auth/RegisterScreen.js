@@ -14,14 +14,10 @@ export const RegisterScreen = () => {
   const { msgError } = useSelector((state) => state.ui); // <- Acá extraigo de state->ui->{el mensaje de error del storage}
 
   const [formValues, handleInputChange] = useForm({
-    // name: '',
-    // email: '',
-    // password: '',
-    // password2: '',
-    name: 'Benja',
-    email: 'benja@gmail.com',
-    password: '123456',
-    password2: '123456',
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
   });
 
   const { name, email, password, password2 } = formValues;
@@ -68,7 +64,7 @@ export const RegisterScreen = () => {
   };
 
   return (
-    <>
+    <div className="animate__animated animate__fadeIn animate__fast">
       <h3 className="auth__tittle">Sign Up</h3>
       <form onSubmit={handleSignUpForm}>
         <input
@@ -94,6 +90,7 @@ export const RegisterScreen = () => {
           type="password"
           placeholder="Password"
           name="password"
+          autoComplete="on"
           value={password}
           onChange={handleInputChange}
         />
@@ -102,6 +99,7 @@ export const RegisterScreen = () => {
           type="password"
           placeholder="Confirm password"
           name="password2"
+          autoComplete="on"
           value={password2}
           onChange={handleInputChange}
         />
@@ -114,6 +112,6 @@ export const RegisterScreen = () => {
           Already registered?
         </Link>
       </form>
-    </>
+    </div>
   );
 };

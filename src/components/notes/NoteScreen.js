@@ -8,8 +8,15 @@ import { NotesAppBar } from './NotesAppBar';
 export const NoteScreen = () => {
   const dispatch = useDispatch();
   const { active: note } = useSelector((state) => state.notes);
-  const [formValues, handleInputChange, reset] = useForm(note);
-  const { id, body, title } = formValues;
+  const [formValues, handleInputChange, reset] = useForm({ ...note });
+  const {
+    id,
+    body,
+    title,
+    url,
+  } = formValues; /* 👈 acá creo que está mi problema, 
+  pero no sé como tomar esa url del storage de redux y establezerlo en el useForm, para
+  que, cuando al ingresar valores en el form no me borre la imagen en el useEffect*/
 
   const activeId = useRef(note.id);
 
@@ -64,7 +71,7 @@ export const NoteScreen = () => {
         ></textarea>
 
         {note.url && (
-          <div className="notes__image">
+          <div className="notes__image animate__animated animate__fadeIn">
             <img
               src={note.url}
               alt="note-img"
@@ -76,7 +83,7 @@ export const NoteScreen = () => {
         )}
       </div>
       <button className="btn btn-danger" onClick={handleDelete}>
-        Delete
+        DELETE
       </button>
     </div>
   );

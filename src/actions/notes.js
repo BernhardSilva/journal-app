@@ -3,7 +3,6 @@ import {
   toastError,
   uploaderImg,
   closeUploaderImg,
-  messageButton,
 } from '../helpers/messages';
 import { db } from '../firebase/firebase-config';
 import { loadNotes } from '../helpers/loadNotes';
@@ -17,6 +16,7 @@ export const startNewNote = () => {
     const newNote = {
       title: '',
       body: '',
+      url: '',
       date: new Date().getTime(),
     };
 
@@ -64,9 +64,7 @@ export const startLoadingNotes = (uid) => {
       dispatch(setNotes(notes));
     } catch (error) {
       console.log(error);
-      messageButton.fire({
-        position: 'center',
-        icon: 'error',
+      toastError.fire({
         title:
           '"Load Notes" failed, communication error with the database, please check your internet connection and try again',
       });
@@ -94,14 +92,14 @@ export const startSaveNote = (note) => {
       await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
       dispatch(refreshNote(note.id, noteToFirestore));
       toast.fire({
-        position: 'top-end',
+        position: 'top',
         icon: 'success',
         title: `Your note "${note.title}" has been saved`,
       });
     } catch (error) {
       console.log(error);
       toastError.fire({
-        position: 'top-end',
+        // position: 'top',
         title: `"${note.title}" save failed, communication error with the database, please check your internet connection and try again`,
       });
     }
