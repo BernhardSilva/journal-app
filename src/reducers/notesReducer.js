@@ -24,6 +24,7 @@ export const notesReducer = (state = initialState, action) => {
       return {
         ...state,
         active: {
+          ...state.active,
           ...action.payload,
         },
       };

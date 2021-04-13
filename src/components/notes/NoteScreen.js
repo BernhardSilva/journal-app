@@ -13,7 +13,6 @@ export const NoteScreen = () => {
     id,
     body,
     title,
-    url,
   } = formValues; /* 👈 acá creo que está mi problema, 
   pero no sé como tomar esa url del storage de redux y establezerlo en el useForm, para
   que, cuando al ingresar valores en el form no me borre la imagen en el useEffect*/
